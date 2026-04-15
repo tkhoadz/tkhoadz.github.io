@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netdiscover | Network Reconnaissance</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="page">
+        <header>
+            <h1>ARP Discovery with netdiscover</h1>
+            <p>Locate hosts on a local network using ARP.</p>
+        </header>
+
+        <section class="card">
+            <h2>Scan the local network</h2>
+            <pre><code>sudo netdiscover -r 192.168.1.0/24</code></pre>
+            <p>Discovers live hosts and MAC addresses on the target subnet.</p>
+        </section>
+
+        <section class="card">
+            <h2>Passive scan mode</h2>
+            <pre><code>sudo netdiscover -p</code></pre>
+            <p>Listens for traffic instead of actively sending ARP requests.</p>
+        </section>
+
+        <p class="note"><a href="index.html">← Back to Network Reconnaissance</a></p>
+    </div>
+</body>
+</html>

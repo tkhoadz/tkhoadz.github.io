@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set up Kali Linux | Lab Setup</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="page">
+        <header>
+            <h1>Set up Kali Linux</h1>
+            <p>Quick starter guide to installing and preparing Kali.</p>
+        </header>
+
+        <section class="card">
+            <h2>Install Kali</h2>
+            <p>Download the ISO from the official Kali website and create a bootable USB or VM.</p>
+        </section>
+
+        <section class="card">
+            <h2>Update packages</h2>
+            <pre><code>sudo apt update && sudo apt full-upgrade -y</code></pre>
+            <p>Keep the system and tools up to date.</p>
+        </section>
+
+        <section class="card">
+            <h2>Enable root or sudo</h2>
+            <pre><code>sudo passwd root
+sudo usermod -aG sudo <username></code></pre>
+            <p>Set up a privileged account for lab testing.</p>
+        </section>
+
+        <p class="note"><a href="index.html">← Back to Lab Setup</a></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nmap Reference | Kali Tools</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="page">
+        <header>
+            <h1>Nmap Reference</h1>
+            <p>Common Nmap command examples for Kali Linux.</p>
+        </header>
+
+        <section class="card">
+            <h2>Top ports scan</h2>
+            <pre><code>sudo nmap -T4 -A -p- 192.168.1.10</code></pre>
+            <p>Scans all ports with aggressive detection and service enumeration.</p>
+        </section>
+
+        <section class="card">
+            <h2>Save output to file</h2>
+            <pre><code>sudo nmap -oA output 192.168.1.10</code></pre>
+            <p>Saves normal, XML, and grepable output files for later analysis.</p>
+        </section>
+
+        <p class="note"><a href="index.html">← Back to Kali Tools</a></p>
+    </div>
+</body>
+</html>

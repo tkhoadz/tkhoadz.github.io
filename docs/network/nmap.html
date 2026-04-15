@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nmap Scans | Network Reconnaissance</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="page">
+        <header>
+            <h1>Nmap Scan Examples</h1>
+            <p>Basic network discovery and port scanning commands for Kali Linux.</p>
+        </header>
+
+        <section class="card">
+            <h2>Quick network discovery</h2>
+            <pre><code>sudo nmap -sn 192.168.1.0/24</code></pre>
+            <p>Performs a ping scan to list live hosts on the subnet.</p>
+        </section>
+
+        <section class="card">
+            <h2>Service and version scan</h2>
+            <pre><code>sudo nmap -sV -p 1-1000 192.168.1.10</code></pre>
+            <p>Scans the first 1000 ports and attempts to identify services.</p>
+        </section>
+
+        <p class="note"><a href="index.html">← Back to Network Reconnaissance</a></p>
+    </div>
+</body>
+</html>

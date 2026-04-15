@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Injection | Web Application Testing</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="page">
+        <header>
+            <h1>SQL Injection Basics</h1>
+            <p>Learn how to identify SQL injection points and use tools safely.</p>
+        </header>
+
+        <section class="card">
+            <h2>Quick command example</h2>
+            <pre><code>sqlmap -u "http://target/page.php?id=1" --batch --risk=1 --level=2</code></pre>
+            <p>Runs sqlmap against a parameterized URL to identify SQL injection vulnerabilities.</p>
+        </section>
+
+        <section class="card">
+            <h2>Use with care</h2>
+            <p>Only run this against targets you are authorized to test.</p>
+        </section>
+
+        <p class="note"><a href="index.html">← Back to Web Application Testing</a></p>
+    </div>
+</body>
+</html>

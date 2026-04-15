@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XSS | Web Application Testing</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="page">
+        <header>
+            <h1>Cross-site Scripting (XSS)</h1>
+            <p>Understand XSS payloads and how to test safely.</p>
+        </header>
+
+        <section class="card">
+            <h2>Reflected XSS check</h2>
+            <pre><code>curl -G "http://target/page.php" --data-urlencode "q=<script>alert('xss')</script>"</code></pre>
+            <p>Submit an encoded payload to see whether the input is reflected unsafely.</p>
+        </section>
+
+        <section class="card">
+            <h2>Burp Suite reconnaissance</h2>
+            <pre><code>Use Burp Proxy to intercept and modify parameter values in the browser.</code></pre>
+            <p>Burp Suite helps visualize which inputs are reflected and where to test further.</p>
+        </section>
+
+        <p class="note"><a href="index.html">← Back to Web Application Testing</a></p>
+    </div>
+</body>
+</html>

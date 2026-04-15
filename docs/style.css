@@ -6,9 +6,34 @@ body {
     color: #f0f0f0;
 }
 
-.page {
-    max-width: 1000px;
-    margin: 0 auto;
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    background: #161616;
+    padding: 24px;
+    border-right: 1px solid #333;
+}
+
+.sidebar h2 {
+    color: #fff;
+    margin-top: 0;
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.sidebar nav li {
+    margin: 10px 0;
+}
+
+.content {
+    flex: 1;
     padding: 24px;
 }
 
@@ -28,15 +53,6 @@ a {
 
 a:hover {
     text-decoration: underline;
-}
-
-nav ul {
-    list-style: none;
-    padding-left: 0;
-}
-
-nav li {
-    margin: 10px 0;
 }
 
 .card {

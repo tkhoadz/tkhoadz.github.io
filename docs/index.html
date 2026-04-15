@@ -7,13 +7,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="page">
-        <header>
-            <h1>TKhoa's Kali Hacking Library</h1>
-            <p>Browse training material by category. Use these tutorials only in legal labs.</p>
-        </header>
-
-        <section class="card">
+    <div class="container">
+        <aside class="sidebar">
             <h2>Categories</h2>
             <nav>
                 <ul>
@@ -23,13 +18,30 @@
                     <li><a href="labs/index.html">Lab Setup & Practice</a></li>
                 </ul>
             </nav>
-        </section>
+        </aside>
 
-        <section class="card">
-            <h2>Getting Started</h2>
-            <p>Each category contains tutorials with example commands, expected output, and notes for safe learning.</p>
-            <p class="note">This content is for authorized security training and learning in controlled environments only.</p>
-        </section>
+        <main class="content">
+            <header>
+                <h1>TKhoa's Kali Hacking Library</h1>
+                <p>Browse training material by category. Use these tutorials only in legal labs.</p>
+            </header>
+
+            <section class="card">
+                <h2>Getting Started</h2>
+                <p>Each category contains tutorials with example commands, expected output, and notes for safe learning.</p>
+                <p class="note">This content is for authorized security training and learning in controlled environments only.</p>
+            </section>
+
+            <section class="card">
+                <h2>Quick Links</h2>
+                <ul>
+                    <li><a href="network/nmap.html">Nmap Basics</a></li>
+                    <li><a href="web/sql-injection.html">SQL Injection</a></li>
+                    <li><a href="tools/aircrack-ng.html">Aircrack-ng</a></li>
+                    <li><a href="labs/setup-kali.html">Kali Setup</a></li>
+                </ul>
+            </section>
+        </main>
     </div>
 </body>
 </html>

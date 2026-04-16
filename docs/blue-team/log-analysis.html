@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log Analysis | Blue Team</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="page">
+        <header>
+            <h1>Log Analysis and Detection</h1>
+            <p>Learn how to review system and network logs to identify suspicious activity.</p>
+        </header>
+
+        <section class="card">
+            <h2>View recent system logs</h2>
+            <pre><code>sudo journalctl -n 100</code></pre>
+            <p>Inspect the latest system events for unusual login or process activity.</p>
+        </section>
+
+        <section class="card">
+            <h2>Check listening ports</h2>
+            <pre><code>sudo ss -tulpn</code></pre>
+            <p>Look for unexpected services or network listeners that could indicate compromise.</p>
+        </section>
+
+        <section class="card">
+            <h2>Monitor authentication events</h2>
+            <pre><code>sudo grep 'Failed password' /var/log/auth.log | tail -n 20</code></pre>
+            <p>Review failed login attempts to detect brute force or unauthorized access attempts.</p>
+        </section>
+
+        <p class="note"><a href="index.html">← Back to Blue Team</a></p>
+    </div>
+</body>
+</html>

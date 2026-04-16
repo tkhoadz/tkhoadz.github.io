@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Hardening | Blue Team</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="page">
+        <header>
+            <h1>System Hardening and Response</h1>
+            <p>Defensive steps to secure systems and prepare for incidents.</p>
+        </header>
+
+        <section class="card">
+            <h2>Keep packages up to date</h2>
+            <pre><code>sudo apt update && sudo apt upgrade -y</code></pre>
+            <p>Install security updates and minimize vulnerabilities in your environment.</p>
+        </section>
+
+        <section class="card">
+            <h2>Enable a firewall</h2>
+            <pre><code>sudo ufw enable
+sudo ufw allow ssh</code></pre>
+            <p>Allow only necessary services and block everything else.</p>
+        </section>
+
+        <section class="card">
+            <h2>Monitor security tools</h2>
+            <pre><code>sudo fail2ban-client status</code></pre>
+            <p>Verify your detection tools are active and protecting against brute force login attempts.</p>
+        </section>
+
+        <p class="note"><a href="index.html">← Back to Blue Team</a></p>
+    </div>
+</body>
+</html>

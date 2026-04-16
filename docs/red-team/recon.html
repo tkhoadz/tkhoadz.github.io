@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reconnaissance | Red Team</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="page">
+        <header>
+            <h1>Reconnaissance and Information Gathering</h1>
+            <p>Authorized red team reconnaissance in a lab or approved environment.</p>
+        </header>
+
+        <section class="card">
+            <h2>Map the target network</h2>
+            <pre><code>sudo nmap -sn 192.168.1.0/24</code></pre>
+            <p>Discover live hosts and compare them to the known infrastructure inventory.</p>
+        </section>
+
+        <section class="card">
+            <h2>Identify open services</h2>
+            <pre><code>sudo nmap -sV -p 1-1000 192.168.1.10</code></pre>
+            <p>Identify exposed services on an authorized target to inform defensive controls and patches.</p>
+        </section>
+
+        <section class="card">
+            <h2>Document findings</h2>
+            <p>Record all scanned hosts, services, and any unusual behavior in a report for later analysis.</p>
+        </section>
+
+        <p class="note"><a href="index.html">← Back to Red Team</a></p>
+    </div>
+</body>
+</html>

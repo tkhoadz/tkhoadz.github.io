@@ -1,9 +1,9 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     margin: 0;
     padding: 0;
-    background: #111;
-    color: #f0f0f0;
+    background: #041009;
+    color: #8cff8c;
 }
 
 .container {
@@ -12,15 +12,17 @@ body {
 }
 
 .sidebar {
-    width: 250px;
-    background: #161616;
+    width: 260px;
+    background: #06120d;
     padding: 24px;
-    border-right: 1px solid #333;
+    border-right: 1px solid #0f2d17;
 }
 
 .sidebar h2 {
-    color: #fff;
+    color: #8cff8c;
     margin-top: 0;
+    font-size: 1.1rem;
+    letter-spacing: 0.04em;
 }
 
 .sidebar nav ul {
@@ -29,7 +31,16 @@ body {
 }
 
 .sidebar nav li {
-    margin: 10px 0;
+    margin: 12px 0;
+}
+
+.sidebar nav a {
+    color: #9aff9a;
+    text-decoration: none;
+}
+
+.sidebar nav a:hover {
+    text-decoration: underline;
 }
 
 .content {
@@ -38,16 +49,25 @@ body {
 }
 
 header {
-    border-bottom: 1px solid #333;
     margin-bottom: 24px;
 }
 
+.terminal-header {
+    padding: 14px 18px;
+    background: #06220f;
+    color: #8cff8c;
+    border: 1px solid #0f4623;
+    border-radius: 10px;
+    margin-bottom: 18px;
+    font-size: 0.95rem;
+}
+
 h1, h2, h3 {
-    color: #fff;
+    color: #b4ffb4;
 }
 
 a {
-    color: #4fc3f7;
+    color: #81ff81;
     text-decoration: none;
 }
 
@@ -55,15 +75,55 @@ a:hover {
     text-decoration: underline;
 }
 
-.card {
-    background: #161616;
-    border: 1px solid #2a2a2a;
+.folder-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.folder {
+    background: #06120d;
+    border: 1px solid #0b371d;
+    border-radius: 14px;
     padding: 18px;
-    border-radius: 12px;
+    box-shadow: inset 0 0 0 1px rgba(141, 255, 141, 0.06);
+}
+
+.folder-icon {
+    display: inline-block;
+    font-size: 1.7rem;
+    margin-bottom: 12px;
+}
+
+.folder h3 {
+    margin: 0 0 12px;
+    font-size: 1.05rem;
+}
+
+.folder p {
+    margin: 0;
+    color: #b4ffb4;
+}
+
+.card {
+    background: #06120d;
+    border: 1px solid #0b371d;
+    padding: 18px;
+    border-radius: 14px;
     margin-bottom: 16px;
 }
 
 .note {
-    color: #aaa;
+    color: #9aff9a;
     margin-top: 18px;
+}
+
+ul {
+    margin: 0;
+    padding-left: 1.2rem;
+}
+
+ul li {
+    margin: 8px 0;
 }

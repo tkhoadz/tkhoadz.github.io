@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evasion Techniques | TKhoa's Cybersecurity Library</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="page">
+        <header>
+            <h1>Evasion & Obfuscation Tools</h1>
+            <p>Bypass AV/EDR with code morphing, encoding, living-off-the-land. Detection and hunting guides.</p>
+        </header>
+
+        <section class="folder-grid">
+            <article class="folder">
+                <span class="folder-icon">🛡️</span>
+                <h3>PowerShell Obfuscation</h3>
+                <p>Invoke-Obfuscation, variable encoding, string concat.</p>
+            </article>
+
+            <article class="folder">
+                <span class="folder-icon">🛡️</span>
+                <h3>AMSI Bypass</h3>
+                <p>Patch AMSI.dll, reflective PE load bypasses.</p>
+            </article>
+
+            <article class="folder">
+                <span class="folder-icon">🛡️</span>
+                <h3>Shellcode Mutation</h3>
+                <p>Dynamic XOR, API hashing, control flow flattening.</p>
+            </article>
+
+            <article class="folder">
+                <span class="folder-icon">🛡️</span>
+                <h3>Invoke-Obfuscation</h3>
+                <p>Interactive PS obfuscator with 100+ techniques.</p>
+            </article>
+
+            <article class="folder">
+                <span class="folder-icon">🛡️</span>
+                <h3>Donut</h3>
+                <p>Shellcode generator for .NET, raw PE execution.</p>
+            </article>
+
+            <article class="folder">
+                <span class="folder-icon">🛡️</span>
+                <h3>Hyperion</h3>
+                <p>Process hollowing, encryption for PE loaders.</p>
+            </article>
+
+            <article class="folder">
+                <span class="folder-icon">🛡️</span>
+                <h3>Custom Packers</h3>
+                <p>UPX alternatives, custom crypters.</p>
+            </article>
+
+            <article class="folder">
+                <span class="folder-icon">🛡️</span>
+                <h3>ETW Patching</h3>
+                <p>Disable Event Tracing for Windows logging.</p>
+            </article>
+
+            <article class="folder">
+                <span class="folder-icon">🛡️</span>
+                <h3>LOLBins</h3>
+                <p>Living-off-the-land binaries for execution.</p>
+            </article>
+
+            <article class="folder">
+                <span class="folder-icon">🛡️</span>
+                <h3>MSBuild Evasion</h3>
+                <p>Inline C# compilation at runtime.</p>
+            </article>
+
+            <article class="folder">
+                <span class="folder-icon">🛡️</span>
+                <h3>Regsvr32 Bypass</h3>
+                <p>SCCM/ALKY for .NET DLL execution.</p>
+            </article>
+
+            <article class="folder">
+                <span class="folder-icon">🛡️</span>
+                <h3>Process Injection</h3>
+                <p>Classic, early bird, doppelganging APC.</p>
+            </article>
+        </section>
+
+        <section class="card">
+            <h2>Evasion Detection</h2>
+            <pre><code>powershell -ep bypass -c Get-Process | Select Name,Id
+sc query amsi | findstr STATE
+sigcheck64.exe -tv C:\Windows\System32</code></pre>
+            <p>Constrained PS, AMSI status, verify digital signatures.</p>
+        </section>
+
+        <p class="note"><a href="index.html">← Back to Tools</a> | <a href="post-exploitation.html">Post-Exploitation</a></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Phishing Demo | TKhoa's Cybersecurity Library</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .warning-banner {
+            background: #1a0a0a;
+            border: 2px solid #ff6b6b;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .warning-banner h2 {
+            color: #ff6b6b;
+            margin-top: 0;
+            font-size: 1.5rem;
+        }
+
+        .demo-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .phishing-link {
+            background: #06120d;
+            border: 1px solid #0b371d;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .phishing-link h3 {
+            color: #8cff8c;
+            margin-top: 0;
+        }
+
+        .phishing-link a {
+            display: inline-block;
+            background: #4ade80;
+            color: #000;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 15px 0;
+            transition: all 0.3s;
+        }
+
+        .phishing-link a:hover {
+            background: #22c55e;
+            transform: scale(1.05);
+        }
+
+        .captured-data {
+            background: #06120d;
+            border: 1px solid #0b371d;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .captured-data h3 {
+            color: #8cff8c;
+            margin-top: 0;
+        }
+
+        .data-display {
+            background: #000;
+            border: 1px solid #4ade80;
+            border-radius: 5px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            color: #8cff8c;
+            min-height: 200px;
+            white-space: pre-wrap;
+        }
+
+        .clear-btn {
+            background: #ff6b6b;
+            color: #000;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .clear-btn:hover {
+            background: #dc2626;
+        }
+
+        .phishing-iframe {
+            width: 100%;
+            height: 600px;
+            border: 1px solid #0b371d;
+            border-radius: 5px;
+            background: #fff;
+        }
+
+        .iframe-container {
+            background: #06120d;
+            border: 1px solid #0b371d;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .iframe-container h3 {
+            color: #8cff8c;
+            margin-top: 0;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-box {
+            background: #06120d;
+            border: 1px solid #0b371d;
+            border-radius: 5px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #4ade80;
+        }
+
+        .stat-label {
+            color: #8cff8c;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <header>
+            <h1>Interactive Phishing Demo</h1>
+            <p>Experience how easy it is to create convincing phishing pages. This demo shows the dangers of social engineering attacks.</p>
+        </header>
+
+        <div class="demo-container">
+            <div class="warning-banner">
+                <h2>⚠️ EDUCATIONAL DEMONSTRATION ONLY</h2>
+                <p><strong>This is a SAFE educational tool to demonstrate phishing techniques.</strong></p>
+                <p>All data entered here is processed client-side only and never transmitted or stored anywhere. This demonstrates how easily attackers can capture your credentials.</p>
+                <p style="color: #ff6b6b; font-weight: bold;">NEVER enter real credentials on suspicious websites!</p>
+            </div>
+
+            <div class="stats">
+                <div class="stat-box">
+                    <div class="stat-number">90%</div>
+                    <div class="stat-label">of breaches involve phishing</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">30s</div>
+                    <div class="stat-label">to create this fake login</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">of data stays local</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">real credentials collected</div>
+                </div>
+            </div>
+
+            <div class="demo-section">
+                <div class="phishing-link">
+                    <h3>🎣 Fake Google Login Demo</h3>
+                    <p>Click below to see how convincing a phishing page can look:</p>
+                    <a href="#" onclick="showPhishingPage(); return false;">Click Here for Google Login Clone</a>
+                    <p style="font-size: 0.8rem; color: #b4ffb4; margin-top: 15px;">
+                        This opens a fake Google login page in the iframe below.<br>
+                        Try entering fake credentials to see how they're captured.
+                    </p>
+                </div>
+
+                <div class="captured-data">
+                    <h3>📊 Captured Data (Client-Side Only)</h3>
+                    <p>Any credentials entered in the phishing page will appear here:</p>
+                    <div class="data-display" id="capturedData">
+[WAITING FOR PHISHING ATTEMPT...]
+
+No credentials captured yet.
+This demonstrates how phishing pages steal your login information.
+                    </div>
+                    <button class="clear-btn" onclick="clearCapturedData()">Clear Data</button>
+                </div>
+            </div>
+
+            <div class="iframe-container">
+                <h3>🔍 Phishing Page Preview</h3>
+                <p>The fake login page will load here when you click the button above.</p>
+                <iframe id="phishingFrame" class="phishing-iframe" src="about:blank"></iframe>
+            </div>
+
+            <section class="card">
+                <h2>How This Demo Works</h2>
+                <p>This interactive demonstration shows:</p>
+                <ul>
+                    <li><strong>Convincing Design:</strong> The fake Google login looks almost identical to the real one</li>
+                    <li><strong>Easy Creation:</strong> This page was created in minutes using basic HTML/CSS</li>
+                    <li><strong>Data Capture:</strong> JavaScript captures everything you type (username, password, etc.)</li>
+                    <li><strong>No Security:</strong> No encryption, no validation - just raw credential theft</li>
+                    <li><strong>Real Threat:</strong> Attackers can host these on free domains and send via email</li>
+                </ul>
+            </section>
+
+            <section class="card">
+                <h2>Blue Team: How to Detect Phishing</h2>
+                <p><strong>URL Analysis:</strong></p>
+                <ul>
+                    <li>Check for HTTPS (but remember, attackers can get free SSL certificates)</li>
+                    <li>Look for domain typos: "g00gle.com" instead of "google.com"</li>
+                    <li>Hover over links before clicking to see the real destination</li>
+                    <li>Use URL shorteners? They're often used to hide phishing URLs</li>
+                </ul>
+
+                <p><strong>Page Analysis:</strong></p>
+                <ul>
+                    <li>Look for poor grammar or unusual phrasing</li>
+                    <li>Check if the page asks for unnecessary information</li>
+                    <li>Verify the favicon and page styling matches the legitimate site</li>
+                    <li>Use browser developer tools to inspect the page source</li>
+                </ul>
+
+                <p><strong>Behavioral Indicators:</strong></p>
+                <ul>
+                    <li>Unexpected login requests (you weren't trying to log in)</li>
+                    <li>Urgent language: "Your account will be suspended!"</li>
+                    <li>Requests for sensitive information via email</li>
+                    <li>Links from unknown senders</li>
+                </ul>
+            </section>
+
+            <section class="card">
+                <h2>Prevention Strategies</h2>
+                <p><strong>Technical Controls:</strong></p>
+                <ul>
+                    <li>Enable multi-factor authentication (MFA) on all accounts</li>
+                    <li>Use password managers to avoid typing credentials</li>
+                    <li>Implement email filtering and anti-phishing tools</li>
+                    <li>Use browser extensions that warn about suspicious sites</li>
+                </ul>
+
+                <p><strong>User Training:</strong></p>
+                <ul>
+                    <li>Never click links in unexpected emails</li>
+                    <li>Always type URLs manually for important sites</li>
+                    <li>Report suspicious emails to IT/security team</li>
+                    <li>Verify requests for sensitive information through other channels</li>
+                </ul>
+
+                <p><strong>Organizational:</strong></p>
+                <ul>
+                    <li>Regular phishing awareness training</li>
+                    <li>Simulated phishing exercises</li>
+                    <li>Clear reporting procedures for suspected phishing</li>
+                    <li>Zero-trust security model implementation</li>
+                </ul>
+            </section>
+        </div>
+
+        <p class="note"><a href="index.html">← Back to Human Defense</a></p>
+    </div>
+
+    <script>
+        let capturedCredentials = [];
+
+        function showPhishingPage() {
+            const iframe = document.getElementById('phishingFrame');
+            iframe.src = 'fake-google-login.html';
+            updateCapturedData();
+        }
+
+        function captureCredential(username, password) {
+            const timestamp = new Date().toLocaleString();
+            const credential = {
+                timestamp: timestamp,
+                username: username,
+                password: password,
+                userAgent: navigator.userAgent,
+                url: window.location.href
+            };
+
+            capturedCredentials.push(credential);
+            updateCapturedData();
+
+            // Simulate what a real attacker would do
+            console.log('🚨 PHISHING ALERT: Credential captured!');
+            console.log('Username:', username);
+            console.log('Password:', password);
+            console.log('This data would normally be sent to attacker\'s server');
+        }
+
+        function updateCapturedData() {
+            const display = document.getElementById('capturedData');
+            if (capturedCredentials.length === 0) {
+                display.textContent = `[WAITING FOR PHISHING ATTEMPT...]
+
+No credentials captured yet.
+This demonstrates how phishing pages steal your login information.
+
+Try clicking "Click Here for Google Login Clone" above and entering fake credentials.`;
+                return;
+            }
+
+            let output = `[PHISHING DATA CAPTURED - ${capturedCredentials.length} ATTEMPT(S)]
+
+`;
+            capturedCredentials.forEach((cred, index) => {
+                output += `=== ATTEMPT ${index + 1} ===
+Timestamp: ${cred.timestamp}
+Username: ${cred.username}
+Password: ${cred.password}
+User Agent: ${cred.userAgent}
+Source URL: ${cred.url}
+
+`;
+            });
+
+            output += `🚨 SECURITY ALERT:
+In a real phishing attack, this data would be:
+- Sent to attacker's server
+- Stored in database
+- Used to access your accounts
+- Sold on dark web
+
+This demonstrates why you should NEVER enter real credentials on suspicious websites!
+
+Prevention: Always verify URLs, use MFA, and report suspicious sites.`;
+
+            display.textContent = output;
+        }
+
+        function clearCapturedData() {
+            capturedCredentials = [];
+            updateCapturedData();
+        }
+
+        // Make captureCredential function globally available for the iframe
+        window.captureCredential = captureCredential;
+    </script>
+</body>
+</html>

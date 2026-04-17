@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bettercap Wireless | TKhoa's Cybersecurity Library</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="page">
+        <header>
+            <h1>Bettercap WiFi Module</h1>
+            <p>Modern swiss-army knife for 802.11 sniffing and attacks.</p>
+        </header>
+
+        <section class="card">
+            <h2>Installation</h2>
+            <pre><code>sudo apt install bettercap
+sudo setcap cap_net_raw,cap_net_admin+eip /usr/bin/bettercap</code></pre>
+        </section>
+
+        <section class="card">
+            <h2>WiFi Scan</h2>
+            <pre><code>sudo bettercap -iface wlan0
+wifi.recon on
+wifi.recon <channel></code></pre>
+        </section>
+
+        <section class="card">
+            <h2>Deauth Attack</h2>
+            <pre><code>wifi.deauth <BSSID></code></pre>
+        </section>
+
+        <section class="card">
+            <h2>Evil Twin AP</h2>
+            <pre><code>net.probe on
+wifi.ap <ssid> <bssid> <channel></code></pre>
+        </section>
+
+        <p class="note"><a href="wireless.html">← Wireless Tools</a></p>
+    </div>
+</body>
+</html>

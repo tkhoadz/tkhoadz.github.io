@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wireless Tools | TKhoa's Cybersecurity Library</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="page">
+        <header>
+            <h1>Wireless Attack Tools</h1>
+            <p>Comprehensive collection of wireless auditing tools for authorized red team assessments. Learn detection and defense.</p>
+        </header>
+
+        <section class=\"folder-grid\">
+            <article class=\"folder\">
+                <span class=\"folder-icon\">📡</span>
+                <h3><a href=\"aircrack-ng.html\">Aircrack-ng Suite</a></h3>
+                <p>Monitor mode, packet injection, WEP/WPA cracking fundamentals.</p>
+            </article>
+
+            <article class=\"folder\">
+                <span class=\"folder-icon\">📡</span>
+                <h3><a href=\"airgeddon.html\">Airgeddon</a></h3>
+                <p>Interactive framework for all WiFi attacks from Evil Twin to PMKID.</p>
+            </article>
+
+            <article class=\"folder\">
+                <span class=\"folder-icon\">📡</span>
+                <h3><a href=\"fluxion.html\">Fluxion</a></h3>
+                <p>GUI-based evil twin and credential harvesting attacks.</p>
+            </article>
+
+            <article class=\"folder\">
+                <span class=\"folder-icon\">📡</span>
+                <h3><a href=\"wifite.html\">WiFite</a></h3>
+                <p>Automated tool for scanning, attacking, and cracking multiple protocols.</p>
+            </article>
+
+            <article class=\"folder\">
+                <span class=\"folder-icon\">📡</span>
+                <h3><a href=\"wifi-pineapple.html\">WiFi Pineapple</a></h3>
+                <p>Hardware platform for advanced rogue AP and man-in-the-middle attacks.</p>
+            </article>
+
+            <article class=\"folder\">
+                <span class=\"folder-icon\">📡</span>
+                <h3><a href=\"pwnagotchi.html\">Pwnagotchi</a></h3>
+                <p>AI-powered handshake capture device for passive WPA attacks.</p>
+            </article>
+
+            <article class=\"folder\">
+                <span class=\"folder-icon\">📡</span>
+                <h3>Bettercap</h3>
+                <p>Modern framework for WiFi sniffing, deauth floods, evil twin.</p>
+            </article>
+
+            <article class=\"folder\">
+                <span class=\"folder-icon\">📡</span>
+                <h3>Linset</h3>
+                <p>High success rate evil twin with web cloning capabilities.</p>
+            </article>
+
+            <article class=\"folder\">
+                <span class=\"folder-icon\">📡</span>
+                <h3>Wifiphisher</h3>
+                <p>Social engineering focused rogue AP framework.</p>
+            </article>
+
+            <article class=\"folder\">
+                <span class=\"folder-icon\">📡</span>
+                <h3>TShark WiFi Analysis</h3>
+                <p>Deep packet inspection for wireless protocol anomalies.</p>
+            </article>
+
+            <article class=\"folder\">
+                <span class=\"folder-icon\">📡</span>
+                <h3>PMKID Attacks</h3>
+                <p>Passwordless WPA2 cracking techniques with hcxdumptool.</p>
+            </article>
+
+            <article class=\"folder\">
+                <span class=\"folder-icon\">📡</span>
+                <h3>ESP32 Deauther</h3>
+                <p>Low-cost hardware for DoS and tracking attacks.</p>
+            </article>
+        </section>
+
+        <section class=\"card\">
+            <h2>Wireless Defense Quickstart</h2>
+            <pre><code>sudo iwlist wlan0 scan | grep ESSID
+sudo iw dev wlan0 info | grep type
+sudo tcpdump -i wlan0mon '(type mgt subtype deauth or subtype action)'</code></pre>
+            <p>Scan networks, check monitor mode, detect deauth floods.</p>
+        </section>
+
+        <p class=\"note\"><a href=\"index.html\">← Back to Tools</a> | <a href=\"post-exploitation.html\">Post-Exploitation →</a></p>
+    </div>
+</body>
+</html>

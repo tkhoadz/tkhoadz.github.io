@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malicious USB Awareness</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="page">
+        <header>
+            <h1>Malicious USB Awareness</h1>
+            <p>Learn how to recognize and defend against dangerous USB devices and BadUSB-style attacks.</p>
+        </header>
+
+        <section class="card">
+            <h2>Recognize suspicious USB devices</h2>
+            <p>Be cautious of unknown USB sticks or devices that show up unexpectedly. Do not plug them in unless you trust the source.</p>
+        </section>
+
+        <section class="card">
+            <h2>Inspect USB device details</h2>
+            <pre><code>lsusb -v | less</code></pre>
+            <p>Review connected USB devices and verify vendor IDs and product descriptions against expected hardware.</p>
+        </section>
+
+        <section class="card">
+            <h2>Defensive practice</h2>
+            <p>Use a dedicated security workstation and consider USB whitelisting solutions to prevent unauthorized devices.</p>
+        </section>
+
+        <p class="note"><a href="index.html">← Back to Tool Awareness</a></p>
+    </div>
+</body>
+</html>

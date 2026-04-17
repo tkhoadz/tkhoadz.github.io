@@ -3,29 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nmap Reference | Kali Tools</title>
+    <title>Network Audit Basics</title>
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
     <div class="page">
         <header>
-            <h1>Nmap Reference</h1>
-            <p>Common Nmap command examples for Kali Linux.</p>
+            <h1>Network Audit Basics</h1>
+            <p>Use port and host discovery to validate your network and detect unexpected devices.</p>
         </header>
 
         <section class="card">
-            <h2>Top ports scan</h2>
-            <pre><code>sudo nmap -T4 -A -p- 192.168.1.10</code></pre>
-            <p>Scans all ports with aggressive detection and service enumeration.</p>
+            <h2>Discover online devices</h2>
+            <pre><code>sudo nmap -sn 192.168.1.0/24</code></pre>
+            <p>Find hosts on your local network and compare them against your inventory.</p>
         </section>
 
         <section class="card">
-            <h2>Save output to file</h2>
-            <pre><code>sudo nmap -oA output 192.168.1.10</code></pre>
-            <p>Saves normal, XML, and grepable output files for later analysis.</p>
+            <h2>Audit exposed services</h2>
+            <pre><code>sudo nmap -sV -p 1-1000 192.168.1.10</code></pre>
+            <p>Inspect open ports and services on a machine you own to detect unexpected exposures.</p>
         </section>
 
-        <p class="note"><a href="index.html">← Back to Kali Tools</a></p>
+        <p class="note"><a href="index.html">← Back to Tool Awareness</a></p>
     </div>
 </body>
 </html>

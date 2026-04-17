@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incident Response | Lab & Response</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="page">
+        <header>
+            <h1>Incident Response Basics</h1>
+            <p>Learn the first steps to take when suspicious activity is detected.</p>
+        </header>
+
+        <section class="card">
+            <h2>Verify the alert</h2>
+            <p>Check logs, network activity, and system status before taking action.</p>
+        </section>
+
+        <section class="card">
+            <h2>Collect evidence</h2>
+            <pre><code>sudo dmesg | tail -n 50
+sudo journalctl -n 50</code></pre>
+            <p>Gather recent system messages and logs to understand what happened.</p>
+        </section>
+
+        <section class="card">
+            <h2>Isolate the system</h2>
+            <p>If you suspect compromise, remove the affected host from the network and preserve its state for analysis.</p>
+        </section>
+
+        <p class="note"><a href="index.html">← Back to Lab & Response</a></p>
+    </div>
+</body>
+</html>

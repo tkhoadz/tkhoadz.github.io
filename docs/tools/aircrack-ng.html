@@ -3,29 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aircrack-ng | Kali Tools</title>
+    <title>Wireless Defense Awareness</title>
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
     <div class="page">
         <header>
-            <h1>Aircrack-ng Basics</h1>
-            <p>Capture and analyze wireless traffic with Kali Linux tools.</p>
+            <h1>Wireless Defense Awareness</h1>
+            <p>Recognize wireless attack vectors and learn how defenders can detect them.</p>
         </header>
 
         <section class="card">
-            <h2>Start monitor mode</h2>
-            <pre><code>sudo airmon-ng start wlan0</code></pre>
-            <p>Put the wireless adapter into monitor mode before capturing packets.</p>
+            <h2>Scan visible networks</h2>
+            <pre><code>sudo iwlist wlan0 scan | grep -E 'ESSID|Signal'</code></pre>
+            <p>Review nearby SSIDs and signal strength to identify unexpected or suspicious wireless access points.</p>
         </section>
 
         <section class="card">
-            <h2>Capture handshakes</h2>
-            <pre><code>sudo airodump-ng wlan0mon --write capture</code></pre>
-            <p>Capture 4-way handshakes and network data for offline cracking.</p>
+            <h2>Check interface mode</h2>
+            <pre><code>sudo iw dev wlan0 info</code></pre>
+            <p>Validate that your wireless adapter is in managed mode, not monitor mode, unless you are using it for authorized analysis.</p>
         </section>
 
-        <p class="note"><a href="index.html">← Back to Kali Tools</a></p>
+        <section class="card">
+            <h2>Spot rogue devices</h2>
+            <p>Defenders should be able to distinguish between trusted access points and unknown devices broadcasting Wi-Fi.</p>
+        </section>
+
+        <p class="note"><a href="index.html">← Back to Tool Awareness</a></p>
     </div>
 </body>
 </html>

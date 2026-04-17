@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pwnagotchi Awareness</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="page">
+        <header>
+            <h1>Pwnagotchi Awareness</h1>
+            <p>Understand passive Wi-Fi credential capture tools and how to protect your network against them.</p>
+        </header>
+
+        <section class="card">
+            <h2>What to watch for</h2>
+            <p>Devices like Pwnagotchi listen to Wi-Fi traffic and capture handshakes. Know the risk it poses to weak or open networks.</p>
+        </section>
+
+        <section class="card">
+            <h2>Monitor for unknown clients</h2>
+            <pre><code>sudo tcpdump -i wlan0 -n 'arp or icmp' | head</code></pre>
+            <p>Capture low-volume traffic to see unexpected devices on the wireless network.</p>
+        </section>
+
+        <section class="card">
+            <h2>Protect your network</h2>
+            <p>Use strong WPA3 or WPA2 passphrases and disable open or poorly secured Wi-Fi networks.</p>
+        </section>
+
+        <p class="note"><a href="index.html">← Back to Tool Awareness</a></p>
+    </div>
+</body>
+</html>

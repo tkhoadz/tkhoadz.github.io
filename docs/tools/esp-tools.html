@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoT Firmware Awareness</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="page">
+        <header>
+            <h1>IoT Firmware Awareness</h1>
+            <p>Learn how attackers may use IoT flashing tools and how to secure embedded devices.</p>
+        </header>
+
+        <section class="card">
+            <h2>Understand the risk</h2>
+            <p>Tools like esptool can reflash firmware on IoT devices. Proper device hardening and access control are essential.</p>
+        </section>
+
+        <section class="card">
+            <h2>Inspect serial devices</h2>
+            <pre><code>ls /dev/ttyUSB*</code></pre>
+            <p>Identify connected USB serial devices before allowing access or flashing.</p>
+        </section>
+
+        <section class="card">
+            <h2>Protect IoT devices</h2>
+            <p>Disable unused serial/USB ports, update firmware from trusted sources, and segment IoT devices on a separate network.</p>
+        </section>
+
+        <p class="note"><a href="index.html">← Back to Tool Awareness</a></p>
+    </div>
+</body>
+</html>

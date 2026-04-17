@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wi-Fi Pineapple Awareness</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="page">
+        <header>
+            <h1>Wi-Fi Pineapple Awareness</h1>
+            <p>Understand how rogue Wi-Fi devices operate and how to detect them defensively.</p>
+        </header>
+
+        <section class="card">
+            <h2>What it is</h2>
+            <p>A Wi-Fi Pineapple is a device used to create fake access points. Defenders need to recognize the signs of a rogue AP.</p>
+        </section>
+
+        <section class="card">
+            <h2>Detect suspicious wireless networks</h2>
+            <pre><code>sudo iwlist wlan0 scan | grep -E 'ESSID|Signal'</code></pre>
+            <p>Look for unexpected SSIDs or multiple access points with similar names in your environment.</p>
+        </section>
+
+        <section class="card">
+            <h2>Check connected clients</h2>
+            <pre><code>sudo arp -a</code></pre>
+            <p>Inspect ARP entries for unexpected MAC addresses on your local network.</p>
+        </section>
+
+        <p class="note"><a href="index.html">← Back to Tool Awareness</a></p>
+    </div>
+</body>
+</html>

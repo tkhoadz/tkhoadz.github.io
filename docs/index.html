@@ -5,8 +5,148 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TKhoa's Cybersecurity Awareness Library</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .disclaimer-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            overflow: auto;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .disclaimer-modal.show {
+            display: flex;
+        }
+
+        .disclaimer-modal-content {
+            background: #041009;
+            border: 2px solid #ff6b6b;
+            border-radius: 10px;
+            padding: 40px;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            text-align: center;
+        }
+
+        .disclaimer-modal-content h2 {
+            color: #ff6b6b;
+            font-size: 1.8rem;
+            margin-top: 0;
+            text-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+        }
+
+        .disclaimer-modal-content p {
+            color: #8cff8c;
+            line-height: 1.6;
+            margin: 15px 0;
+        }
+
+        .warning-text {
+            color: #ff6b6b;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin: 20px 0;
+        }
+
+        .modal-buttons {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .modal-buttons button {
+            padding: 12px 25px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
+
+        .btn-agree {
+            background: #4ade80;
+            color: #000;
+        }
+
+        .btn-agree:hover {
+            background: #22c55e;
+            transform: scale(1.05);
+        }
+
+        .btn-disclaimer {
+            background: transparent;
+            color: #8cff8c;
+            border: 2px solid #8cff8c;
+        }
+
+        .btn-disclaimer:hover {
+            background: rgba(140, 255, 140, 0.1);
+            border-color: #4ade80;
+        }
+
+        .checkbox-modal {
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .checkbox-modal input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .checkbox-modal label {
+            color: #8cff8c;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+    </style>
 </head>
 <body>
+    <!-- Disclaimer Modal -->
+    <div id="disclaimerModal" class="disclaimer-modal show">
+        <div class="disclaimer-modal-content">
+            <h2>⚠️ DISCLAIMER</h2>
+            <p><strong>This website contains EDUCATIONAL material about cybersecurity and penetration testing.</strong></p>
+            
+            <div class="warning-text">
+                ⚠️ ALL information is for AUTHORIZED security professionals ONLY
+            </div>
+
+            <p>By proceeding, you confirm that:</p>
+            <ul style="text-align: left; display: inline-block; color: #8cff8c;">
+                <li>You are 18+ years old or have parental consent</li>
+                <li>You will comply with ALL laws and regulations</li>
+                <li>You will ONLY use this info with explicit authorization</li>
+                <li>You understand TKhoa is NOT liable for misuse</li>
+                <li>You assume FULL responsibility for your actions</li>
+            </ul>
+
+            <div class="checkbox-modal">
+                <input type="checkbox" id="agreeCheckbox">
+                <label for="agreeCheckbox">I understand and accept these terms</label>
+            </div>
+
+            <div class="modal-buttons">
+                <button class="btn-disclaimer" onclick="openDisclaimer()">Read Full Terms</button>
+                <button class="btn-agree" id="agreeBtn" onclick="acceptDisclaimer()" disabled>I AGREE</button>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <aside class="sidebar">
             <h2>Sections</h2>
@@ -19,6 +159,7 @@
                     <li><a href="blue-team/index.html">Blue Team</a></li>
                     <li><a href="human/index.html">Human Defense</a></li>
                     <li><a href="labs/index.html">Lab & Response</a></li>
+                    <li style="border-top: 1px solid #0f2d17; margin-top: 15px; padding-top: 15px;"><a href="disclaimer.html" style="color: #ff6b6b;">⚠️ Disclaimer & Terms</a></li>
                 </ul>
             </nav>
         </aside>
@@ -106,5 +247,31 @@
             </section>
         </main>
     </div>
+
+    <script>
+        // Check checkbox to enable agree button
+        document.getElementById('agreeCheckbox').addEventListener('change', function() {
+            document.getElementById('agreeBtn').disabled = !this.checked;
+        });
+
+        // Accept disclaimer
+        function acceptDisclaimer() {
+            localStorage.setItem('disclaimerAccepted', 'true');
+            localStorage.setItem('disclaimerAcceptedDate', new Date().toISOString());
+            document.getElementById('disclaimerModal').classList.remove('show');
+        }
+
+        // Open full disclaimer page
+        function openDisclaimer() {
+            window.location.href = 'disclaimer.html';
+        }
+
+        // Check if user already agreed
+        window.addEventListener('load', function() {
+            if (localStorage.getItem('disclaimerAccepted')) {
+                document.getElementById('disclaimerModal').classList.remove('show');
+            }
+        });
+    </script>
 </body>
 </html>

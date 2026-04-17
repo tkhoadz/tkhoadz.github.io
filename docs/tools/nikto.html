@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nikto Web Scanner Awareness</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="page">
+        <header>
+            <h1>Nikto Web Scanner Awareness</h1>
+            <p>Scan your test web servers for common misconfigurations and vulnerabilities.</p>
+        </header>
+
+        <section class="card">
+            <h2>Basic scan</h2>
+            <pre><code>nikto -h http://192.168.1.100</code></pre>
+            <p>Run default scan on lab web server, checking for outdated software, misconfigs.</p>
+        </section>
+
+        <section class="card">
+            <h2>Save output</h2>
+            <pre><code>nikto -h http://192.168.1.100 -o nikto-scan.html -Format html</code></pre>
+            <p>Generate HTML/CSV reports for review. Pipe to tools like grep for specific issues.</p>
+        </section>
+
+        <section class="card">
+            <h2>SSL and plugins</h2>
+            <pre><code>nikto -h https://192.168.1.100 -ssl -Plugins "headers,software"</code></pre>
+            <p>Target HTTPS, limit plugins to focus on headers/server info. Test evasion with -Tuning.</p>
+        </section>
+
+        <p class="note"><a href="index.html">← Back to Tool Awareness</a></p>
+    </div>
+</body>
+</html>

@@ -2,28 +2,38 @@ body {
     font-family: 'Courier New', Courier, monospace;
     margin: 0;
     padding: 0;
-    background: #041009;
+    background: #000000;
     color: #8cff8c;
     position: relative;
     overflow-x: hidden;
 }
 
 body::before {
-    content: '';
+    content: '01001011 11010010 10101100 11110001 01010101 10101010 11001100 01011010 10101001 11110011 01010110 10011001 11100101 01010101 10101010 11001100 01011010 10101001 11110011 01010110 10011001 11100101 01001011 11010010 10101100 11110001 01010101 10101010 11001100 01011010 10101001 11110011 01010110 10011001 11100101 01010110 10011001 11100101 01001011 11010010 10101100 11110001';
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: 
-        radial-gradient(circle at 20% 80%, rgba(140, 255, 140, 0.03) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(74, 222, 128, 0.03) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(129, 255, 129, 0.02) 0%, transparent 50%);
+    font-size: 0.8rem;
+    line-height: 1.2;
+    color: rgba(140, 255, 140, 0.08);
+    white-space: pre-wrap;
+    word-break: break-all;
+    overflow: hidden;
     pointer-events: none;
-    z-index: -1;
+    z-index: 0;
+    animation: binaryScroll 20s linear infinite;
+}
+
+@keyframes binaryScroll {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100vh); }
 }
 
 .container {
+    position: relative;
+    z-index: 1;
     display: flex;
     min-height: 100vh;
 }

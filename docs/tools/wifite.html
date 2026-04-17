@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WiFite Wireless Auditing Tool | TKhoa's Cybersecurity Library</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="page">
+        <header>
+            <h1>WiFite - Automated Wireless Network Auditor</h1>
+            <p>WiFite is a complete automated wireless attack and auditing tool. This page documents commands for authorized red team assessments and defensive awareness.</p>
+        </header>
+
+        <section class="card">
+            <h2>Installation</h2>
+            <pre><code>sudo apt-get install git python3 aircrack-ng mdk3
+git clone https://github.com/derv82/wifite2.git
+cd wifite2
+sudo chmod +x wifite.py
+sudo python3 wifite.py --help</code></pre>
+            <p><strong>Defense:</strong> Monitor for wifite2 repository clones and Python script execution with aircrack tools.</p>
+        </section>
+
+        <section class="card">
+            <h2>Basic Scan and Automatic Attack</h2>
+            <pre><code>sudo python3 wifite.py</code></pre>
+            <p>Launch wifite in interactive mode. Scans all networks and displays menu for automated attacks.</p>
+        </section>
+
+        <section class="card">
+            <h2>Scan Specific Channel</h2>
+            <pre><code>sudo python3 wifite.py -c 6</code></pre>
+            <p>Limit scanning to specific channel(s). Multiple channels: -c 1,6,11</p>
+        </section>
+
+        <section class="card">
+            <h2>Target Specific Network by BSSID</h2>
+            <pre><code>sudo python3 wifite.py -b AA:BB:CC:DD:EE:FF</code></pre>
+            <p>Attack only an explicitly targeted MAC address after finding network.</p>
+        </section>
+
+        <section class="card">
+            <h2>Skip Networks Without Handshakes</h2>
+            <pre><code>sudo python3 wifite.py --no-handshake-failure</code></pre>
+            <p>Automatically skip networks where handshake capture fails, saving time.</p>
+        </section>
+
+        <section class="card">
+            <h2>Wordlist-Only Attack Mode</h2>
+            <pre><code>sudo python3 wifite.py --attack-all --wordlist /usr/share/wordlists/rockyou.txt</code></pre>
+            <p>Use only dictionary attacks, skip WEP and WPS brute force methods.</p>
+        </section>
+
+        <section class="card">
+            <h2>Automatic WEP Cracking</h2>
+            <pre><code>sudo python3 wifite.py --skip-wpa</code></pre>
+            <p>Focus on legacy WEP networks. Captures IV packets and auto-cracks key.</p>
+        </section>
+
+        <section class="card">
+            <h2>WPA Handshake Capture</h2>
+            <pre><code>sudo python3 wifite.py --keep-ivs</code></pre>
+            <p>Capture WPA/WPA2 handshakes. Wifite deauths clients to force reconnection and handshake capture.</p>
+        </section>
+
+        <section class="card">
+            <h2>Enable Script Attacks</h2>
+            <pre><code>sudo python3 wifite.py --aruba --uber</code></pre>
+            <p>Enable targeting of specific router vulnerabilities (Aruba Networks, etc.).</p>
+        </section>
+
+        <section class="card">
+            <h2>Monitor Specific Interface</h2>
+            <pre><code>sudo python3 wifite.py -i wlan0mon</code></pre>
+            <p>Specify wireless interface. Wifite auto-enables monitor mode if needed.</p>
+        </section>
+
+        <section class="card">
+            <h2>Continue Previous Attack</h2>
+            <pre><code>sudo python3 wifite.py --recrack</code></pre>
+            <p>Resume from previous WPA handshake files. Useful for long dictionary attacks.</p>
+        </section>
+
+        <section class="card">
+            <h2>Custom Wordlist Attack</h2>
+            <pre><code>sudo python3 wifite.py --wordlist /path/to/custom-passwords.txt
+# Wifite attempts each password in order</code></pre>
+            <p>Supply custom password list for post-handshake brute force attempts.</p>
+        </section>
+
+        <section class="card">
+            <h2>WPS Brute Force Attack</h2>
+            <pre><code>sudo python3 wifite.py --kill-wps</code></pre>
+            <p>Target vulnerable routers with default or weak WPS pins (4-8 digits).</p>
+        </section>
+
+        <section class="card">
+            <h2>Verbose Output and Logging</h2>
+            <pre><code>sudo python3 wifite.py -v</code></pre>
+            <p>Enable verbose mode to see detailed attack progress and capture details.</p>
+        </section>
+
+        <section class="card">
+            <h2>5GHz Network Targeting</h2>
+            <pre><code>sudo python3 wifite.py -c 36,40,44,48 -n</code></pre>
+            <p>Target 5GHz networks on channels 36-48 (USA). Add more channels as needed for region.</p>
+        </section>
+
+        <section class="card">
+            <h2>Save Captures to Custom Directory</h2>
+            <pre><code>sudo python3 wifite.py --output /tmp/wifite-captures/
+ls /tmp/wifite-captures/</code></pre>
+            <p>Store handshake files and logs in custom directory for organization.</p>
+        </section>
+
+        <section class="card">
+            <h2>Full Manual Workflow</h2>
+            <pre><code># 1. Enable monitor mode
+sudo airmon-ng start wlan0
+
+# 2. Scan networks
+sudo airodump-ng wlan0mon
+
+# 3. Target and capture handshake
+sudo airodump-ng -c 6 -b AA:BB:CC:DD:EE:FF -w wpa_capture wlan0mon
+
+# 4. In another terminal, send deauth
+sudo aireplay-ng --deauth 10 -a AA:BB:CC:DD:EE:FF wlan0mon
+
+# 5. Crack with wifite
+sudo python3 wifite.py --recrack --wordlist /usr/share/wordlists/rockyou.txt</code></pre>
+            <p>Step-by-step manual execution of wifite-automated workflow.</p>
+        </section>
+
+        <section class="card">
+            <h2>PMKID Attack (New Method)</h2>
+            <pre><code>sudo hcxdumptool -i wlan0mon --active_beacon -o pmkid.pcap
+sudo hashcat -m 16800 -a 3 pmkid.16800</code></pre>
+            <p>Wifite may integrate PMKID attacks for faster WPA2/WPA3 cracking.</p>
+        </section>
+
+        <section class="card">
+            <h2>Cleanup Monitor Mode</h2>
+            <pre><code>sudo airmon-ng stop wlan0mon
+sudo systemctl restart networking</code></pre>
+            <p>Disable monitor mode and restore normal wireless operation.</p>
+        </section>
+
+        <section class="card">
+            <h2>Combined Attack with Multiple Wordlists</h2>
+            <pre><code>cat /usr/share/wordlists/rockyou.txt /usr/share/wordlists/passwords.txt > combined.txt
+sudo python3 wifite.py --wordlist combined.txt --recrack</code></pre>
+            <p>Merge multiple wordlists for comprehensive password attack.</p>
+        </section>
+
+        <section class="card">
+            <h2>Blue Team: Defensive Countermeasures</h2>
+            <p><strong>Network Security:</strong></p>
+            <ul>
+                <li>Disable WEP (deprecated, use WPA2/WPA3 only)</li>
+                <li>Disable WPS on all routers (major vulnerability)</li>
+                <li>Enforce 16+ character passwords with mixed case, numbers, symbols</li>
+                <li>Use WPA3 where available for stronger security</li>
+                <li>Implement rate limiting on authentication attempts</li>
+            </ul>
+            <p><strong>Detection and Monitoring:</strong></p>
+            <ul>
+                <li>Monitor for rapid client deauthentication events</li>
+                <li>Alert on failed authentication attempts exceeding threshold</li>
+                <li>Track monitor interface creation (wlan0mon, etc.)</li>
+                <li>Monitor airmon-ng, airodump-ng, aireplay-ng processes</li>
+                <li>Log all Python script execution with packet capture tools</li>
+                <li>Implement wireless IDS to detect IV injection and unusual patterns</li>
+            </ul>
+            <p><strong>User Education:</strong></p>
+            <ul>
+                <li>Teach verification of network names and trust settings</li>
+                <li>Warn against connecting to suspicious open networks</li>
+                <li>Require VPN for sensitive work on WiFi</li>
+                <li>Educate on phishing via rogue access points</li>
+            </ul>
+        </section>
+
+        <p class="note"><a href="index.html">← Back to Tool Awareness</a></p>
+    </div>
+</body>
+</html>
